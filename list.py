@@ -1,33 +1,61 @@
-palabras = []
+# Lista de InuUtiles Escolares
+# Agregar nuevos utiles
+# Listar todos los utiles
+# Actualizar un item por la posicion
+# Eliminar un item por la posicion
 
-palabras.append("Python")
-palabras.append(5)
-palabras.append(True)
-palabras.append(input("Ingrese un descripcion!:"))
+utiles = []
+item = []
+menu = """
+·················································
+:                                               :
+:                                               :
+:   /$$      /$$                                :
+:  | $$$    /$$$                                :
+:  | $$$$  /$$$$  /$$$$$$  /$$$$$$$  /$$   /$$  :
+:  | $$ $$/$$ $$ /$$__  $$| $$__  $$| $$  | $$  :
+:  | $$  $$$| $$| $$$$$$$$| $$  \\ $$| $$  | $$  :
+:  | $$\\  $ | $$| $$_____/| $$  | $$| $$  | $$  :
+:  | $$ \\/  | $$|  $$$$$$$| $$  | $$|  $$$$$$/  :
+:  |__/     |__/ \\_______/|__/  |__/ \\______/   :
+:                                               :
+: 1. Agregar nuevos Utiles Inutiles             :
+: 2. Listar los Utiles Inutiles                 :
+: 3. Actualizar un Util Inutil                  :
+: 4. Eliminar un Util Inutil                    :
+: 5. Finalizar                                  :
+·················································
+"""
 
-palabras.insert(0, "ID: 2")
+def mostrarUtiles(listaDeUtiles):
+    print("+-------------------------------------+")
+    print(" 📚  Lista de Utiles Inutiles   ")
+    print("+-------------------------------------+")
+    for util in listaDeUtiles:
+        print(f"Nombre: {util[0]}  Cantidad: {util[1]}")
+        print("-------------------------------------")
 
-print("Por elementos:")
-for item in palabras:
-    print(item)
-
-palabras[3] = False
-
-print("Por elementos despues del Update:")
-for item in palabras:
-    respuesta = input(f"Quiere actualizar el valor de: {item}\ns\\n")
-    if respuesta == "s":
-        # palabras[x] = ""
-        item = input("Ingrese el nuevo valor:")
-    # Ver en consola los cambios, si hay!
-    print(f"Valor nuevo: {item}")
-
-print("Por elementos final:")
-for item in palabras:
-    print(item)
-
-# for indice in range(len(palabras)): # 0,1,2,3... [0,1,2,3,4.....]
-#     print(indice)
-#     print(type(indice))
-#     print(palabras[indice])
-#     print(type(palabras[indice]))
+while True:
+    print(menu)
+    opcion = int(input("Selecciona una opcion del menu: \n"))
+    if opcion == 1:
+        nombre = input("Ingrese el nombre del Util Inutil: \n")
+        cantidad = int(input(f"Ingrese la cantidad de {nombre} :\n"))
+        item.append(nombre)
+        item.append(cantidad)
+        utiles.append(item.copy())
+        print(utiles)
+        item.clear()
+    elif opcion == 2 :
+        mostrarUtiles(utiles)
+    elif opcion == 3:
+        mostrarUtiles(utiles)
+        itemNombre = input("Ingrese el nombre del Util Inutil a Buscar:\n")
+        print(utiles)
+        for utilIndex in range(len(utiles)):
+            if utiles[utilIndex][0] == itemNombre:
+                nuevoNombre = input(f"Ingrese el nuevo valor para {utiles[utilIndex][0]}: \n")
+                utiles[utilIndex][0] = nuevoNombre
+    elif opcion == 5: 
+        break
+        
