@@ -1,12 +1,15 @@
 # Ingresar una cifra X y vamos a calcular cuantos 
 # billetes de 50k, 20k, 10k y 5k tenemos que devolverle al usaurio
 
-dinero_disponible = [10, 8, 10, 0]
+denominacion = ([5_000, "Cinco Mil"], [10_000, "Diez Mil"], [20_000, "Veinte Mil"], [50_000, "Cincuenta Mil"])
+#             [cantidad,posicion en denominacion]
+dinero_disponible = [[10, 0], [8, 1], [0, 2], [5, 3]]
 
-def mostrarDisponible(montos):
+def mostrarDisponible(montos: list):
     print(f"Disponible  💸")
-    print(f"50k: {montos[0]}\n20k: {montos[1]}",
-      f"\n10k: {montos[2]}\n5k: {montos[3]}")
+    for d in montos:
+
+        print(f"{denominacion[d[1]][1]} -> {d[0]} \n")
     
 def validarMonto(denominacion):
     cantidad = -1
@@ -18,28 +21,27 @@ def validarMonto(denominacion):
         else:
             return cantidad
         
-def validarDenominacionMenor(denominacion):
-    can = len(denominacion)
+def validarDenominacionMenor(listaDenominacion): #[cantidad, posicion]
     minima = 0
-    for item in range(can): # [0,1,2,3,4..]
-        
-        if denominacion[item] > 0:
-            if item == 0:
-                minima = 50_000
-            elif item == 1:
-                minima = 20_00
-            elif item == 2:
-                minima = 10_000
-            else:
-                minima = 5_000
+    for d in listaDenominacion[::-1]:
+        if d[0] > 0:
+            #  denominacion[d[1]] = [5_000, "Cinco Mil"]
+            # denominacion[d[1]][1] = "Cinco Mil"
+            # denominacion[d[1]][1] = 5_000
+            minima = denominacion[d[1]][0]
+            print(f'validarDenominacionMenor: {minima}')
     return minima
+
+def validarTotalDisponible():
+    #Antes de "Retirar" podamos validar que el cajero cuente con ese monto disponible
+    pass
     
-denominacion = validarDenominacionMenor(denominacion= dinero_disponible)
-print(f"La minima: {denominacion}")
+denominacionMinima = validarDenominacionMenor(listaDenominacion= dinero_disponible)
+print(f"La minima: {denominacionMinima}")
 
 mostrarDisponible(montos= dinero_disponible)
 
-cantidad = validarMonto(denominacion=denominacion)
+cantidad = validarMonto(denominacion=denominacionMinima)
 #230.000
 
 can_50 = 0
